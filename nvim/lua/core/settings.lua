@@ -1,5 +1,7 @@
 local let opt = vim.opt
 
+opt.mouse = ""
+
 opt.guicursor = "n-v-i-c:block-Cursor"
 
 opt.cursorline = true
