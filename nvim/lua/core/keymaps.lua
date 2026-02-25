@@ -127,6 +127,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("K",  vim.lsp.buf.hover,          "Documentação do símbolo (hover)")
 
     -- LSP — prefixo <leader>l
+    map("<leader>lf", function() require("conform").format({ bufnr = ev.buf }) end, "Formatar arquivo (conform)")
     map("<leader>lr", vim.lsp.buf.rename,        "Renomear símbolo em todo projeto")
     map("<leader>ld", vim.diagnostic.open_float, "Ver detalhe do diagnóstico da linha")
     vim.keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action,
