@@ -6,14 +6,13 @@ return {
     'nvim-neotest/neotest-jest',
     "nvim-neotest/nvim-nio",
     "nvim-lua/plenary.nvim",
-    "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
   },
   config = function()
     require("neotest").setup({
       adapters = {
         require('neotest-rspec')({
-          irspec_cmd = function()
+          rspec_cmd = function()
             return vim.tbl_flatten({
               "bundle",
               "exec",
@@ -21,7 +20,7 @@ return {
             })
           end,
         }),
-         require('neotest-jest')({
+        require('neotest-jest')({
           jestCommand = "npm run test",
           jestConfigFile = "jest.config.ts",
           env = { CI = true },
@@ -30,11 +29,12 @@ return {
           end,
         }),
       },
-      config = {
-        output_panel = { open_on_run = true },
-        diagnostic = true
-      }
+      output = {
+        open_on_run = true,
+      },
+      summary = {
+        open_on_run = true,
+      },
     })
   end
 }
-

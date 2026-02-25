@@ -1,4 +1,4 @@
-local let opt = vim.opt
+local opt = vim.opt
 
 opt.mouse = ""
 
@@ -16,3 +16,24 @@ opt.smarttab = true   -- Make tabs smarter (e.g., respect `shiftwidth`)
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " " -- Optional for local leader
+
+opt.ignorecase = true  -- busca case-insensitive por padrão
+opt.smartcase = true   -- mas se digitar letra maiúscula, vira case-sensitive
+
+opt.scrolloff = 8
+opt.sidescrolloff = 8
+
+opt.undofile = true
+
+opt.clipboard = "unnamedplus"
+
+-- Auto-reload files changed externally (ex: Claude Code no terminal)
+opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "WinEnter", "TermLeave", "CursorHold", "CursorHoldI" }, {
+  pattern = "*",
+  callback = function()
+    if vim.fn.mode() ~= "c" then
+      vim.cmd("silent! checktime")
+    end
+  end,
+})

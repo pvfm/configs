@@ -1,11 +1,12 @@
 return {
-    -- Gruvbox with configuration
     {
-        "morhetz/gruvbox",
+        "ellisonleao/gruvbox.nvim",
+        priority = 1000,
         config = function()
-            vim.g.gruvbox_contrast_dark = "medium"
+            require("gruvbox").setup({
+                contrast = "soft",
+            })
             vim.cmd("colorscheme gruvbox")
         end,
     },
 }
-

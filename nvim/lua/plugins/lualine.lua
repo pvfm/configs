@@ -1,70 +1,83 @@
 return {
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" }, -- Para ícones
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
+            -- Caracteres powerline via bytes UTF-8 explícitos (U+E0B0 a U+E0B3)
+            -- Evita corrupção por copy-paste de glyphs do Private Use Area
+            local arrow = {
+                right_fill  = string.char(238, 130, 176), -- U+E0B0 ▶ seta sólida →
+                right_thin  = string.char(238, 130, 177), -- U+E0B1   seta fina →
+                left_fill   = string.char(238, 130, 178), -- U+E0B2 ◀ seta sólida ←
+                left_thin   = string.char(238, 130, 179), -- U+E0B3   seta fina ←
+            }
+
             require("lualine").setup({
                 options = {
-                    theme = "gruvbox", -- Tema principal
+                    theme = "gruvbox",
                     icons_enabled = true,
-                    component_separators = { left = "⮞", right = "⮜" }, -- Setas transparentes
-                    section_separators = { left = "⮞", right = "⮜" }, -- Setas entre seções
-                    globalstatus = true, -- Statusline única
+                    -- Setas grandes entre seções (estilo agnoster)
+                    section_separators   = { left = arrow.right_fill, right = arrow.left_fill },
+                    -- Setas finas entre componentes dentro de uma seção
+                    component_separators = { left = arrow.right_thin, right = arrow.left_thin },
+                    globalstatus = true,
                 },
                 sections = {
-                    -- Seção da esquerda
+                    -- [MODO] bloco amarelo à esquerda
                     lualine_a = {
-                        { 
-                            "mode", 
-                            fmt = function(str) return str:upper() end, -- Exibe o modo completo em maiúsculas
-                            color = { fg = "#282828", bg = "#fabd2f", gui = "bold" }, 
+                        {
+                            "mode",
+                            fmt = function(str) return str:upper() end,
                         },
                     },
+
+                    -- [BRANCH + DIFF] bloco azul
                     lualine_b = {
-                        { 
-                            "branch", 
-                            icon = "", 
-                            color = { fg = "#ebdbb2", bg = "#458588" } 
-                        },
-                        { 
-                            "diff", 
-                            symbols = { added = " ", modified = "柳", removed = " " }, -- Ícones para diff
-                            color = { bg = "#458588" } 
+                        { "branch" },
+                        {
+                            "diff",
+                            symbols = { added = "+", modified = "~", removed = "-" },
                         },
                     },
-                    -- Seção central
+
+                    -- [ARQUIVO] centro
                     lualine_c = {
-                        { 
-                            "filename", 
-                            path = 1, -- Caminho relativo
-                            color = { fg = "#ebdbb2", bg = "#282828" },
+                        {
+                            "filename",
+                            path = 1, -- caminho relativo
+                            symbols = {
+                                modified = " ●",
+                                readonly = " [RO]",
+                                unnamed  = "[sem nome]",
+                            },
                         },
                     },
-                    -- Seção da direita
+
+                    -- [DIAGNÓSTICOS + FILETYPE + ENCODING] lado direito
                     lualine_x = {
                         {
+                            "diagnostics",
+                            symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" },
+                        },
+                        {
                             function()
-                                return os.date("%d/%m/%Y %H:%M") -- Data e hora
+                                return (vim.bo.expandtab and "spaces" or "tabs") .. ":" .. vim.bo.shiftwidth
                             end,
-                            color = { fg = "#ebdbb2", bg = "#504945" },
                         },
-                        { 
-                            "filetype", 
-                            icon_only = true, 
-                            color = { fg = "#ebdbb2", bg = "#504945" } 
+                        { "encoding" },
+                        {
+                            function()
+                                return vim.bo.fileformat == "unix" and "LF" or "CRLF"
+                            end,
                         },
-                        { 
-                            "filetype", 
-                            color = { fg = "#ebdbb2", bg = "#504945" } 
-                        },
+                        { "filetype" },
                     },
-                    lualine_y = {},
-                    lualine_z = {
-                        { 
-                            "location", 
-                            color = { fg = "#282828", bg = "#d3869b" }, -- Linha e coluna
-                        },
-                    },
+
+                    -- [PROGRESSO] bloco verde
+                    lualine_y = { "progress" },
+
+                    -- [LINHA:COLUNA] bloco roxo à direita
+                    lualine_z = { "location" },
                 },
                 inactive_sections = {
                     lualine_a = {},
@@ -78,4 +91,3 @@ return {
         end,
     },
 }
-
