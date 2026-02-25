@@ -27,6 +27,8 @@ opt.undofile = true
 
 opt.clipboard = "unnamedplus"
 
+opt.fixendofline = true  -- garante newline no final do arquivo ao salvar
+
 -- Auto-reload files changed externally (ex: Claude Code no terminal)
 opt.autoread = true
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "WinEnter", "TermLeave", "CursorHold", "CursorHoldI" }, {
