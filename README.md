@@ -135,10 +135,13 @@ Managed via Mason and auto-installed:
 | `gr` | List references |
 | `gi` | Go to implementation |
 | `K` | Hover documentation |
+| `<C-k>` (insert) | Function signature help |
 | `<leader>lf` | Format current file |
 | `<leader>lr` | Rename symbol |
 | `<leader>ld` | Show diagnostic detail |
 | `<leader>la` | Code actions |
+| `<leader>lh` | Toggle inlay hints (if server supports it) |
+| `<leader>lc` | Run code lens (if server supports it) |
 | `]d` / `[d` | Next / previous diagnostic |
 
 ### Tests (`<leader>n`)

@@ -139,12 +139,35 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("gi", vim.lsp.buf.implementation, "Ir para implementação")
     map("K",  vim.lsp.buf.hover,          "Documentação do símbolo (hover)")
 
+    -- Assinatura da função (parâmetros) enquanto digita
+    vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help,
+      vim.tbl_extend("force", opts, { desc = "Assinatura da função (parâmetros)" }))
+
     -- LSP — prefixo <leader>l
     map("<leader>lf", function() require("conform").format({ bufnr = ev.buf }) end, "Formatar arquivo (conform)")
     map("<leader>lr", vim.lsp.buf.rename,        "Renomear símbolo em todo projeto")
     map("<leader>ld", vim.diagnostic.open_float, "Ver detalhe do diagnóstico da linha")
     vim.keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action,
       vim.tbl_extend("force", opts, { desc = "Code actions (fix, import, refactor)" }))
+
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
+    -- Inlay hints (tipos inline) — só se o servidor suportar
+    if client and client:supports_method("textDocument/inlayHint") then
+      map("<leader>lh", function()
+        local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf })
+        vim.lsp.inlay_hint.enable(not enabled, { bufnr = ev.buf })
+      end, "Toggle inlay hints")
+    end
+
+    -- Codelens (ex: gopls) — só se o servidor suportar
+    if client and client:supports_method("textDocument/codeLens") then
+      vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+        buffer = ev.buf,
+        callback = function() vim.lsp.codelens.refresh({ bufnr = ev.buf }) end,
+      })
+      map("<leader>lc", vim.lsp.codelens.run, "Rodar code lens")
+    end
 
     -- Navegar entre diagnósticos (erros/warnings)
     map("[d", vim.diagnostic.goto_prev, "Diagnostico anterior")
