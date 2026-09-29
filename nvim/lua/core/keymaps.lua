@@ -76,6 +76,8 @@ vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>",     { desc = "Li
 vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>",    { desc = "Arquivos recentes" })
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>",   { desc = "Buscar na documentação do nvim" })
 vim.keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<CR>",     { desc = "Listar todos os keymaps" })
+vim.keymap.set("n", "<leader>fw", "<cmd>Telescope grep_string<CR>", { desc = "Buscar palavra sob o cursor" })
+vim.keymap.set("n", "<leader>fs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Buscar símbolo no projeto (LSP)" })
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Git — Neogit + Gitsigns + blame.nvim

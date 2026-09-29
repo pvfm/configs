@@ -106,6 +106,8 @@ Managed via Mason and auto-installed:
 | `<leader>fr` | Recent files |
 | `<leader>fh` | Search Neovim help |
 | `<leader>fk` | List all keymaps |
+| `<leader>fw` | Search word under cursor |
+| `<leader>fs` | Search symbol in project (LSP workspace symbols) |
 
 ### Git (`<leader>g`)
 
