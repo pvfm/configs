@@ -2,9 +2,10 @@ return {
   -- Neogit: interface Git completa dentro do nvim
   {
     "NeogitOrg/neogit",
+    cmd = "Neogit",  -- carrega só ao abrir o painel
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim", -- visualizacao de diffs lado a lado
+      "sindrets/diffview.nvim",
     },
     config = function()
       require("neogit").setup({

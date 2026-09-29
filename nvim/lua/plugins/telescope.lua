@@ -1,5 +1,6 @@
 return {
   'nvim-telescope/telescope.nvim', branch = 'master',
+  cmd = "Telescope",  -- carrega só ao chamar o comando
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
     require('telescope').setup({

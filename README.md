@@ -31,6 +31,8 @@ To sync local Neovim config back into the repository:
 sh update_script.sh
 ```
 
+This mirrors `~/.config/nvim` into `nvim/` via `rsync --delete`, excluding `.claude/` (per-machine Claude Code settings, not part of the dotfiles).
+
 ## Structure
 
 ```
@@ -68,6 +70,8 @@ configs/
 | [barbar.nvim](https://github.com/romgrk/barbar.nvim) | Buffer tabs |
 | [which-key.nvim](https://github.com/folke/which-key.nvim) | Keymap hints |
 | [nvim-autopairs](https://github.com/windwp/nvim-autopairs) | Auto-close brackets/quotes |
+| [Comment.nvim](https://github.com/numToStr/Comment.nvim) | Line/block comment toggling |
+| [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim) | Live markdown preview in browser |
 
 ## LSP Servers
 
@@ -163,6 +167,8 @@ Managed via Mason and auto-installed:
 | Key | Action |
 |---|---|
 | `<leader>e` | Toggle file explorer (Neo-tree) |
+| `<C-/>` / `<C-_>` | Toggle comment (line, or selection in visual mode) |
+| `<C-S-v>` | Toggle markdown preview (markdown buffers only) |
 | `<leader>tt` | Toggle terminal |
 | `<leader>sv` | Vertical split |
 | `<leader>sh` | Horizontal split |

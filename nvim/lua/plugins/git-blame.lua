@@ -1,10 +1,7 @@
 return {
   {
     "FabijanZulj/blame.nvim",
-    lazy = false,
-    config = function()
-      require('blame').setup {}
-    end,
+    cmd = "BlameToggle",  -- carrega só quando o comando for chamado
     opts = {
       blame_options = { '-w' },
     },

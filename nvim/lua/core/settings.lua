@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-opt.mouse = ""
+opt.mouse = "a"
 
 opt.guicursor = "n-v-i-c:block-Cursor"
 
@@ -15,7 +15,10 @@ opt.expandtab = true  -- Convert tabs to spaces
 opt.smarttab = true   -- Make tabs smarter (e.g., respect `shiftwidth`)
 
 vim.g.mapleader = " "
-vim.g.maplocalleader = " " -- Optional for local leader
+vim.g.maplocalleader = " "
+
+opt.timeoutlen = 300   -- ms para sequências de teclas (padrão 1000 — causava <leader> lento)
+opt.updatetime = 250   -- ms para CursorHold e gitsigns atualizar sinais
 
 opt.ignorecase = true  -- busca case-insensitive por padrão
 opt.smartcase = true   -- mas se digitar letra maiúscula, vira case-sensitive

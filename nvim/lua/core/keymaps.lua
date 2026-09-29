@@ -104,6 +104,17 @@ vim.keymap.set("n", "]h", function() require("gitsigns").next_hunk() end, { desc
 vim.keymap.set("n", "[h", function() require("gitsigns").prev_hunk() end, { desc = "Hunk anterior" })
 
 -- ─────────────────────────────────────────────────────────────────────────────
+-- Markdown Preview
+-- ─────────────────────────────────────────────────────────────────────────────
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function(ev)
+    vim.keymap.set("n", "<C-S-v>", "<cmd>MarkdownPreviewToggle<CR>",
+      { buffer = ev.buf, desc = "Toggle markdown preview" })
+  end,
+})
+
+-- ─────────────────────────────────────────────────────────────────────────────
 -- Explorer — Neo-tree
 -- ─────────────────────────────────────────────────────────────────────────────
 vim.keymap.set("n", "<leader>e",  "<cmd>Neotree toggle<CR>",        { desc = "Toggle file explorer" })
@@ -174,6 +185,30 @@ vim.keymap.set("n", "<leader>7",  "<Cmd>BufferGoto 7<CR>",          { desc = "Ir
 vim.keymap.set("n", "<leader>8",  "<Cmd>BufferGoto 8<CR>",          { desc = "Ir para buffer 8" })
 vim.keymap.set("n", "<leader>9",  "<Cmd>BufferGoto 9<CR>",          { desc = "Ir para buffer 9" })
 vim.keymap.set("n", "<leader>0",  "<Cmd>BufferLast<CR>",            { desc = "Ir para último buffer" })
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- Comentar / descomentar — Comment.nvim
+-- ─────────────────────────────────────────────────────────────────────────────
+vim.keymap.set("n", "<C-/>", function()
+  require("Comment.api").toggle.linewise.current()
+end, { desc = "Comentar/descomentar linha atual" })
+
+vim.keymap.set("v", "<C-/>", function()
+  local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+  vim.api.nvim_feedkeys(esc, "nx", false)
+  require("Comment.api").toggle.linewise(vim.fn.visualmode())
+end, { desc = "Comentar/descomentar seleção" })
+
+-- Fallback: alguns terminais enviam Ctrl+/ como <C-_>
+vim.keymap.set("n", "<C-_>", function()
+  require("Comment.api").toggle.linewise.current()
+end, { desc = "Comentar/descomentar linha atual" })
+
+vim.keymap.set("v", "<C-_>", function()
+  local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+  vim.api.nvim_feedkeys(esc, "nx", false)
+  require("Comment.api").toggle.linewise(vim.fn.visualmode())
+end, { desc = "Comentar/descomentar seleção" })
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Desabilitar setas (forçar hjkl)

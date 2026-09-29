@@ -1,3 +1,3 @@
-#!bin/bash
+#!/bin/bash
 
-cp -r -f ~/.config/nvim ./
+rsync -a --delete --exclude='.claude' ~/.config/nvim/ ./nvim/
