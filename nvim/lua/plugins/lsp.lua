@@ -44,8 +44,14 @@ return {
     dependencies = {
       "mason-org/mason.nvim",
       "mason-org/mason-lspconfig.nvim",
+      "saghen/blink.cmp", -- garante que blink já carregou antes de pedir capabilities
     },
     config = function()
+      -- Capacidades de completion do blink.cmp propagadas pra todo servidor LSP
+      vim.lsp.config("*", {
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
+      })
+
       -- ruby-lsp: usar o shim do asdf para que a versão correta do Ruby seja usada
       -- por projeto (.ruby-version / .tool-versions), em vez do binário hardcoded do Mason.
       -- ruby-lsp já está instalado para Ruby 3.1.2, 3.1.6 e 3.4.4.

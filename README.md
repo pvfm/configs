@@ -70,6 +70,7 @@ configs/
 | [barbar.nvim](https://github.com/romgrk/barbar.nvim) | Buffer tabs |
 | [which-key.nvim](https://github.com/folke/which-key.nvim) | Keymap hints |
 | [nvim-autopairs](https://github.com/windwp/nvim-autopairs) | Auto-close brackets/quotes |
+| [blink.cmp](https://github.com/Saghen/blink.cmp) | Completion engine (LSP, snippets, buffer, path) |
 | [Comment.nvim](https://github.com/numToStr/Comment.nvim) | Line/block comment toggling |
 | [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim) | Live markdown preview in browser |
 
