@@ -15,6 +15,18 @@
 [push]
 	default = current
 
+[rerere]
+  enabled = true
+
+[diff]
+  colorMoved = default
+
+[init]
+  defaultBranch = main
+
+[commit]
+  verbose = true
+
 [alias]
   root = rev-parse --show-toplevel
 
@@ -98,7 +110,7 @@
   ig-untracked = !git ignore `git untracked`
   gitignore = !cd `git root` && touch .gitignore
 
-  authors = git shortlog  --numbered --summary 
+  authors = git shortlog  --numbered --summary
   lp = log -p --color
   lf = log -p --name-only --color
   lnom = log --color --no-merges
