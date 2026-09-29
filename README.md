@@ -84,6 +84,8 @@ Managed via Mason and auto-installed:
 - `gopls` — Go
 - `lua_ls` — Lua
 - `html`, `cssls`, `jsonls`, `yamlls`
+- `eslint` — lint / code actions for JS, TS, Vue
+- `rubocop` — Ruby linting (wrapper script picks `bundle exec` when available)
 
 ## Keymaps
 

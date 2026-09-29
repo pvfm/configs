@@ -32,6 +32,7 @@ return {
         "cssls",      -- CSS / SCSS
         "jsonls",     -- JSON
         "yamlls",     -- YAML
+        "eslint",     -- lint + code actions pra JS/TS/Vue (ts_ls/vue_ls não cobrem lint)
       },
       automatic_enable = true,
     },

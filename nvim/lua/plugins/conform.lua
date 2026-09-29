@@ -5,6 +5,7 @@ return {
     require("conform").setup({
       formatters_by_ft = {
         go   = { "goimports" },
+        lua  = { "stylua" },
         ["*"] = { "trim_whitespace" },
       },
       -- Ao salvar: apenas trim_whitespace
