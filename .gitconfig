@@ -1,11 +1,11 @@
 [user]
-	email =
-  name =
+	email = pvmonteiro26@gmail.com
+	name = Pedro Vitor
 
 [sendemail]
   smtpencryption = tls
   smtpserver = smtp.gmail.com
-  smtpuser =
+  smtpuser = pvmonteiro26@gmail.com
   smtpserverport = 587
 
 [apply]
