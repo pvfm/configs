@@ -8,6 +8,13 @@ opt.cursorline = true
 opt.number = true
 opt.termguicolors = true
 
+opt.signcolumn = "yes"  -- coluna de sinais sempre visível, evita texto pulando lateralmente
+opt.splitright = true   -- vsplit abre à direita
+opt.splitbelow = true   -- split abre abaixo
+opt.confirm = true      -- :q com buffer sujo pergunta em vez de dar erro
+
+vim.o.winborder = "rounded"  -- borda padrão pra floats (hover, signature help, etc)
+
 -- Use 2 spaces for tabs
 opt.tabstop = 2       -- Number of spaces a tab counts for
 opt.shiftwidth = 2    -- Number of spaces to use for autoindent
